@@ -1,0 +1,32 @@
+---
+import { getCollection } from 'astro:content';
+import Card from './Card.astro';
+
+const entries = (await getCollection('knowledge')).sort(
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
+);
+---
+
+<section id="conteudo" class="grid-section">
+  <div class="container">
+    <div class="grid">
+      {entries.map((entry) => (
+        <Card
+          slug={entry.slug}
+          title={entry.data.title}
+          category={entry.data.category}
+          excerpt={entry.data.excerpt}
+          cover={entry.data.cover}
+        />
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 20px;
+  }
+</style>

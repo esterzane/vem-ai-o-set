@@ -1,0 +1,39 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import Hero from '../components/Hero.astro';
+import Intro from '../components/Intro.astro';
+import Filters from '../components/Filters.astro';
+import ContentGrid from '../components/ContentGrid.astro';
+import Featured from '../components/Featured.astro';
+import Newsletter from '../components/Newsletter.astro';
+import { CATEGORY_ORDER } from '../lib/categories';
+
+const entries = await getCollection('knowledge');
+const categoriesPresent = [...new Set(entries.map((e) => e.data.category))];
+const categories = [
+  ...CATEGORY_ORDER,
+  ...categoriesPresent.filter((c) => !CATEGORY_ORDER.includes(c)),
+];
+const featured = entries[0];
+---
+
+<Base title="início">
+  <Hero
+    headline="vem aí o set"
+    subtitle="conhecimento que cresce em ondas, construído por quem participa."
+  />
+  <Intro
+    text="O Oceano carrega um conhecimento imenso que lemos e aprendemos entre gerações. Uma iniciativa intersetorial ancorada no surf enquanto prática imersiva, criativa e capacitadora, onde pescadores, surfistas, profissionais de diferentes setores e gerações se encontram para criar relações mais responsáveis com O Oceano e os territórios costeiros do Norte de Portugal e mais além..."
+  />
+  <Filters categories={categories} />
+  <ContentGrid />
+  {featured && (
+    <Featured
+      title={featured.data.title}
+      href={`/knowledge/${featured.slug}`}
+      cover={featured.data.cover}
+    />
+  )}
+  <Newsletter />
+</Base>

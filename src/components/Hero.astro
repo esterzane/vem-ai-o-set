@@ -1,0 +1,76 @@
+---
+interface Props {
+  headline: string;
+  subtitle: string;
+  videoSrc?: string;
+}
+
+const { headline, subtitle, videoSrc } = Astro.props;
+---
+
+<section class="hero">
+  <div class="container">
+    <h1 class="logo-wrap">
+      <img src="/logo-mark.png" alt={headline} class="pulsing" />
+    </h1>
+    <p>{subtitle}</p>
+    {videoSrc && (
+      <video autoplay muted loop playsinline src={videoSrc}></video>
+    )}
+  </div>
+</section>
+
+<style>
+  .hero {
+    text-align: center;
+    padding-top: 64px;
+    padding-bottom: 64px;
+  }
+  .logo-wrap {
+    margin: 0 0 4px;
+  }
+  .logo-wrap img {
+    width: 100%;
+    max-width: 420px;
+    height: auto;
+  }
+  .pulsing {
+    animation: pulse 3.6s ease-in-out infinite;
+  }
+  @keyframes pulse {
+    0%,
+    100% {
+      transform: scale(1);
+    }
+    14% {
+      transform: scale(1.06);
+    }
+    28% {
+      transform: scale(1);
+    }
+    42% {
+      transform: scale(1.06);
+    }
+    70% {
+      transform: scale(1);
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .pulsing {
+      animation: none;
+    }
+  }
+  p {
+    font-size: 21px;
+    font-weight: 400;
+    letter-spacing: 0.04em;
+    color: var(--text-muted);
+    opacity: 0.85;
+    margin: 0;
+  }
+  video {
+    width: 100%;
+    max-width: 720px;
+    border-radius: 12px;
+  }
+</style>

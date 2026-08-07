@@ -1,0 +1,22 @@
+---
+interface Props {
+  text: string;
+}
+const { text } = Astro.props;
+---
+
+<section id="sobre" class="intro">
+  <div class="container">
+    <p>{text}</p>
+  </div>
+</section>
+
+<style>
+  .intro .container {
+    max-width: 860px;
+  }
+  p {
+    font-size: 21px;
+    line-height: 1.75;
+  }
+</style>

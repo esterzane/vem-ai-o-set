@@ -1,0 +1,23 @@
+---
+const year = new Date().getFullYear();
+---
+
+<footer class="footer" id="contactos">
+  <div class="container row">
+    <span>&copy; {year} vem aí o set</span>
+    <span class="social">instagram · tiktok</span>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    border-top: 1px solid var(--border);
+    padding: 24px 0;
+    font-size: 13px;
+    color: var(--text-muted);
+  }
+  .row {
+    display: flex;
+    justify-content: space-between;
+  }
+</style>

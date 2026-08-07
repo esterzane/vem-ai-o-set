@@ -1,0 +1,86 @@
+---
+// Submissions go to Formspree for manual review before anything is
+// published — replace YOUR_FORM_ID with your real endpoint from
+// https://formspree.io once you've created a form there.
+interface Props {
+  questionSlug: string;
+  questionTitle: string;
+}
+const { questionSlug, questionTitle } = Astro.props;
+---
+
+<section class="contribute">
+  <div class="container">
+    <span class="badge">contribuir</span>
+    <h3>responder a "{questionTitle}"</h3>
+    <p>partilha o que sabes — será revisto antes de publicar.</p>
+    <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+      <input type="hidden" name="question" value={questionTitle} />
+      <input type="hidden" name="slug" value={questionSlug} />
+      <textarea
+        name="note"
+        required
+        placeholder="a tua nota, carta ou resposta..."
+        rows="5"
+      ></textarea>
+      <div class="row">
+        <input type="email" name="email" placeholder="o teu email (opcional)" />
+        <button type="submit">enviar</button>
+      </div>
+    </form>
+  </div>
+</section>
+
+<style>
+  .contribute {
+    border: 2px solid var(--accent);
+    border-radius: 12px;
+    padding: 24px;
+    margin: 32px 0;
+  }
+  .badge {
+    font-size: 11px;
+    text-transform: uppercase;
+    background: #f0f0f0;
+    padding: 4px 10px;
+    border-radius: 999px;
+  }
+  h3 {
+    margin: 12px 0 4px;
+  }
+  p {
+    color: var(--text-muted);
+    margin: 0 0 16px;
+    font-size: 14px;
+  }
+  textarea {
+    width: 100%;
+    font-family: inherit;
+    font-size: 14px;
+    padding: 12px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    resize: vertical;
+    margin-bottom: 12px;
+  }
+  .row {
+    display: flex;
+    gap: 8px;
+  }
+  input[type='email'] {
+    flex: 1;
+    padding: 10px 12px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    font-size: 14px;
+  }
+  button {
+    padding: 10px 20px;
+    border: 1px solid var(--accent);
+    background: var(--accent);
+    color: white;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+  }
+</style>
