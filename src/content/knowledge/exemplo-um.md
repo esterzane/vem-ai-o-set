@@ -2,6 +2,7 @@
 title: "O que é o set?"
 category: "origem"
 tags: ["historia", "conceito"]
+cover: "/origem.jpg"
 date: 2026-08-01
 excerpt: "Uma introdução ao conceito por trás do set e de onde ele vem."
 openQuestion: true

@@ -1,10 +1,16 @@
 ---
 import { getCollection } from 'astro:content';
 import Card from './Card.astro';
+import { CATEGORY_ORDER } from '../lib/categories';
 
-const entries = (await getCollection('knowledge')).sort(
-  (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
-);
+const entries = (await getCollection('knowledge')).sort((a, b) => {
+  const ai = CATEGORY_ORDER.indexOf(a.data.category);
+  const bi = CATEGORY_ORDER.indexOf(b.data.category);
+  const aRank = ai === -1 ? CATEGORY_ORDER.length : ai;
+  const bRank = bi === -1 ? CATEGORY_ORDER.length : bi;
+  if (aRank !== bRank) return aRank - bRank;
+  return b.data.date.valueOf() - a.data.date.valueOf();
+});
 ---
 
 <section id="conteudo" class="grid-section">

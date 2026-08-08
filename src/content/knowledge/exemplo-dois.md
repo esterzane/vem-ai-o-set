@@ -1,7 +1,8 @@
 ---
 title: "Como o set está sendo organizado?"
-category: "bastidores"
+category: "Zona da Rebentação V.01"
 tags: ["organizacao", "processo"]
+cover: "/zona-da-rebentacao.jpeg"
 date: 2026-08-02
 excerpt: "Um panorama de como o evento/projeto vai tomando forma."
 openQuestion: true
